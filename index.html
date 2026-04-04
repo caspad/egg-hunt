@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Great Egg Hunt — Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #d4a574; --dark: #0f0e0c; --cream: #f5efe6; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--dark); color: var(--cream);
+  font-family: 'DM Sans', sans-serif; min-height: 100vh;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; opacity: 0.03;
+  background-image: radial-gradient(circle at 25% 25%, var(--gold) 1px, transparent 1px);
+  background-size: 40px 40px; pointer-events: none;
+}
+.container { max-width: 480px; margin: 0 auto; padding: 24px 20px; position: relative; z-index: 1; }
+.header { text-align: center; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid rgba(212,165,116,0.15); }
+.header h1 { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--gold); letter-spacing: 1px; }
+.note { color: var(--cream); opacity: 0.6; font-size: 14px; text-align: center; margin-bottom: 24px; line-height: 1.6; }
+.clue-link {
+  display: flex; align-items: center; gap: 16px;
+  background: rgba(212,165,116,0.06);
+  border: 1px solid rgba(212,165,116,0.12);
+  border-radius: 12px; padding: 16px 20px;
+  text-decoration: none; color: var(--cream); margin-bottom: 10px;
+}
+.clue-link:hover { background: rgba(212,165,116,0.12); }
+.clue-link .icon { font-size: 20px; }
+.clue-link .label { font-weight: 600; font-size: 16px; color: var(--gold); }
+.clue-link .dest { font-size: 13px; opacity: 0.5; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div style="font-size:28px;margin-bottom:8px">🥚</div>
+    <h1>The Great Egg Hunt</h1>
+  </div>
+  <p class="note">Preview mode — tap any clue to test the puzzle.<br>In the real hunt, each QR code links directly to its clue.</p>
+
+  <a href="clue1.html" class="clue-link">
+    <span class="icon">🔐</span>
+    <div><div class="label">Clue 1 — The Cipher</div><div class="dest">→ Laundry Room</div></div>
+  </a>
+  <a href="clue2.html" class="clue-link">
+    <span class="icon">🔐</span>
+    <div><div class="label">Clue 2 — The Riddle</div><div class="dest">→ Doorman</div></div>
+  </a>
+  <a href="clue3.html" class="clue-link">
+    <span class="icon">🔐</span>
+    <div><div class="label">Clue 3 — The Rebus</div><div class="dest">→ Park Bench</div></div>
+  </a>
+  <a href="clue4.html" class="clue-link">
+    <span class="icon">🔐</span>
+    <div><div class="label">Clue 4 — The Word Search</div><div class="dest">→ The Brambles</div></div>
+  </a>
+  <a href="clue5.html" class="clue-link">
+    <span class="icon">🔐</span>
+    <div><div class="label">Clue 5 — The Anagram</div><div class="dest">→ Dog Park</div></div>
+  </a>
+  <a href="final.html" class="clue-link">
+    <span class="icon">🏆</span>
+    <div><div class="label">Final Prize</div></div>
+  </a>
+</div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>The Great Egg Hunt</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #d4a574;
+  --dark: #0f0e0c;
+  --cream: #f5efe6;
+  --accent: #c8956c;
+  --green: #7ddf7d;
+  --red: #e07a5f;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--dark);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; opacity: 0.03;
+  background-image: radial-gradient(circle at 25% 25%, var(--gold) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+.container {
+  position: relative; z-index: 1;
+  max-width: 480px; margin: 0 auto; padding: 24px 20px;
+}
+.header {
+  text-align: center; margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(212,165,116,0.15);
+}
+.header .egg { font-size: 28px; margin-bottom: 8px; }
+.header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700;
+  color: var(--gold); letter-spacing: 1px;
+}
+.header .sub { color: var(--cream); opacity: 0.4; font-size: 13px; margin-top: 6px; }
+.clue-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; color: var(--gold); margin-bottom: 16px;
+}
+.desc { color: var(--cream); opacity: 0.7; margin-bottom: 16px; font-size: 15px; line-height: 1.6; }
+.puzzle-box {
+  background: rgba(212,165,116,0.08);
+  border-radius: 12px; padding: 24px; margin-bottom: 24px;
+  border: 1px solid rgba(212,165,116,0.15);
+}
+.input-row { display: flex; gap: 12px; }
+.text-input {
+  flex: 1; background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(212,165,116,0.25);
+  border-radius: 8px; padding: 12px 16px;
+  color: var(--cream); font-size: 16px;
+  font-family: 'DM Sans', sans-serif; outline: none;
+}
+.text-input:focus { border-color: var(--gold); }
+.text-input::placeholder { color: rgba(245,239,230,0.3); }
+.btn {
+  background: var(--gold); color: var(--dark); border: none;
+  border-radius: 8px; padding: 12px 24px; font-size: 15px;
+  font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  white-space: nowrap;
+}
+.btn:hover { opacity: 0.9; }
+.hint-btn {
+  background: none; border: none; color: var(--accent);
+  opacity: 0.5; cursor: pointer; font-size: 13px;
+  text-decoration: underline; margin-top: 16px; display: block;
+}
+.hint-text { color: var(--accent); font-size: 14px; font-style: italic; opacity: 0.7; margin-top: 16px; }
+.error { color: var(--red); margin-top: 10px; font-size: 14px; }
+.success-card {
+  animation: fadeUp 0.6s ease-out;
+  background: rgba(125,223,125,0.06);
+  border: 1px solid rgba(125,223,125,0.2);
+  border-radius: 12px; padding: 24px;
+  text-align: center; margin-top: 20px;
+}
+.success-card .egg-icon { font-size: 40px; margin-bottom: 12px; }
+.success-card .answer {
+  color: var(--green); font-size: 18px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600; margin-bottom: 8px;
+}
+.success-card .message { color: var(--cream); opacity: 0.7; font-size: 15px; line-height: 1.5; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bounceIn { 0% { transform: scale(0.3); opacity: 0; } 50% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
+.fade-in { animation: fadeUp 0.5s ease-out; }
+.mono { font-family: 'Courier Prime', monospace; }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+  <div class="egg">🥚</div>
+  <h1>The Great Egg Hunt</h1>
+  <p class="sub"></p>
+</div>
+<div class="fade-in">
+
+<div style="text-align:center;padding:40px 0">
+  <div style="font-size:64px;margin-bottom:20px;animation:bounceIn 0.6s ease-out">🏆</div>
+  <h1 style="font-family:'Playfair Display',serif;font-size:32px;color:var(--gold);margin-bottom:12px">
+    Congratulations!
+  </h1>
+  <p style="color:var(--cream);opacity:0.7;font-size:17px;line-height:1.6;max-width:360px;margin:0 auto">
+    You've completed the hunt! Every clue cracked, every egg found. You're officially an egg-cellent detective.
+  </p>
+  <div style="margin-top:30px;font-size:36px">🥚🐣🥚🐣🥚</div>
+</div>
+
+</div>
+</div>
+</body>
+</html>

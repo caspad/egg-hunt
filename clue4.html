@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>The Great Egg Hunt</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #d4a574;
+  --dark: #0f0e0c;
+  --cream: #f5efe6;
+  --accent: #c8956c;
+  --green: #7ddf7d;
+  --red: #e07a5f;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--dark);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; opacity: 0.03;
+  background-image: radial-gradient(circle at 25% 25%, var(--gold) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+.container {
+  position: relative; z-index: 1;
+  max-width: 480px; margin: 0 auto; padding: 24px 20px;
+}
+.header {
+  text-align: center; margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(212,165,116,0.15);
+}
+.header .egg { font-size: 28px; margin-bottom: 8px; }
+.header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700;
+  color: var(--gold); letter-spacing: 1px;
+}
+.header .sub { color: var(--cream); opacity: 0.4; font-size: 13px; margin-top: 6px; }
+.clue-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; color: var(--gold); margin-bottom: 16px;
+}
+.desc { color: var(--cream); opacity: 0.7; margin-bottom: 16px; font-size: 15px; line-height: 1.6; }
+.puzzle-box {
+  background: rgba(212,165,116,0.08);
+  border-radius: 12px; padding: 24px; margin-bottom: 24px;
+  border: 1px solid rgba(212,165,116,0.15);
+}
+.input-row { display: flex; gap: 12px; }
+.text-input {
+  flex: 1; background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(212,165,116,0.25);
+  border-radius: 8px; padding: 12px 16px;
+  color: var(--cream); font-size: 16px;
+  font-family: 'DM Sans', sans-serif; outline: none;
+}
+.text-input:focus { border-color: var(--gold); }
+.text-input::placeholder { color: rgba(245,239,230,0.3); }
+.btn {
+  background: var(--gold); color: var(--dark); border: none;
+  border-radius: 8px; padding: 12px 24px; font-size: 15px;
+  font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  white-space: nowrap;
+}
+.btn:hover { opacity: 0.9; }
+.hint-btn {
+  background: none; border: none; color: var(--accent);
+  opacity: 0.5; cursor: pointer; font-size: 13px;
+  text-decoration: underline; margin-top: 16px; display: block;
+}
+.hint-text { color: var(--accent); font-size: 14px; font-style: italic; opacity: 0.7; margin-top: 16px; }
+.error { color: var(--red); margin-top: 10px; font-size: 14px; }
+.success-card {
+  animation: fadeUp 0.6s ease-out;
+  background: rgba(125,223,125,0.06);
+  border: 1px solid rgba(125,223,125,0.2);
+  border-radius: 12px; padding: 24px;
+  text-align: center; margin-top: 20px;
+}
+.success-card .egg-icon { font-size: 40px; margin-bottom: 12px; }
+.success-card .answer {
+  color: var(--green); font-size: 18px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600; margin-bottom: 8px;
+}
+.success-card .message { color: var(--cream); opacity: 0.7; font-size: 15px; line-height: 1.5; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bounceIn { 0% { transform: scale(0.3); opacity: 0; } 50% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
+.fade-in { animation: fadeUp 0.5s ease-out; }
+.mono { font-family: 'Courier Prime', monospace; }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+  <div class="egg">🥚</div>
+  <h1>The Great Egg Hunt</h1>
+  <p class="sub">Clue 4 of 5</p>
+</div>
+<div class="fade-in">
+
+<h2 class="clue-title">The Word Search</h2>
+<p class="desc">A two-word location is hidden in this grid. It follows a connected path — right, then down. Find it and type it below.</p>
+<div class="puzzle-box" style="padding:16px;overflow-x:auto">
+  <div style="display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:360px;margin:0 auto" id="grid">
+    <div class="grid-cell" data-ans="false">F</div>
+<div class="grid-cell" data-ans="false">W</div>
+<div class="grid-cell" data-ans="false">K</div>
+<div class="grid-cell" data-ans="false">Q</div>
+<div class="grid-cell" data-ans="false">J</div>
+<div class="grid-cell" data-ans="false">N</div>
+<div class="grid-cell" data-ans="false">P</div>
+<div class="grid-cell" data-ans="false">X</div>
+<div class="grid-cell" data-ans="false">Z</div>
+<div class="grid-cell" data-ans="false">G</div>
+<div class="grid-cell" data-ans="false">M</div>
+<div class="grid-cell" data-ans="false">V</div>
+<div class="grid-cell" data-ans="true">T</div>
+<div class="grid-cell" data-ans="true">H</div>
+<div class="grid-cell" data-ans="true">E</div>
+<div class="grid-cell" data-ans="false">D</div>
+<div class="grid-cell" data-ans="false">R</div>
+<div class="grid-cell" data-ans="false">Y</div>
+<div class="grid-cell" data-ans="false">C</div>
+<div class="grid-cell" data-ans="false">A</div>
+<div class="grid-cell" data-ans="false">I</div>
+<div class="grid-cell" data-ans="false">L</div>
+<div class="grid-cell" data-ans="false">S</div>
+<div class="grid-cell" data-ans="false">U</div>
+<div class="grid-cell" data-ans="true">B</div>
+<div class="grid-cell" data-ans="false">O</div>
+<div class="grid-cell" data-ans="false">W</div>
+<div class="grid-cell" data-ans="false">F</div>
+<div class="grid-cell" data-ans="false">K</div>
+<div class="grid-cell" data-ans="false">N</div>
+<div class="grid-cell" data-ans="false">Z</div>
+<div class="grid-cell" data-ans="false">P</div>
+<div class="grid-cell" data-ans="false">A</div>
+<div class="grid-cell" data-ans="false">G</div>
+<div class="grid-cell" data-ans="true">R</div>
+<div class="grid-cell" data-ans="false">J</div>
+<div class="grid-cell" data-ans="false">X</div>
+<div class="grid-cell" data-ans="false">M</div>
+<div class="grid-cell" data-ans="false">D</div>
+<div class="grid-cell" data-ans="false">Q</div>
+<div class="grid-cell" data-ans="false">Y</div>
+<div class="grid-cell" data-ans="false">C</div>
+<div class="grid-cell" data-ans="false">W</div>
+<div class="grid-cell" data-ans="false">F</div>
+<div class="grid-cell" data-ans="true">A</div>
+<div class="grid-cell" data-ans="false">L</div>
+<div class="grid-cell" data-ans="false">I</div>
+<div class="grid-cell" data-ans="false">V</div>
+<div class="grid-cell" data-ans="false">E</div>
+<div class="grid-cell" data-ans="false">H</div>
+<div class="grid-cell" data-ans="false">D</div>
+<div class="grid-cell" data-ans="false">K</div>
+<div class="grid-cell" data-ans="false">N</div>
+<div class="grid-cell" data-ans="false">R</div>
+<div class="grid-cell" data-ans="true">M</div>
+<div class="grid-cell" data-ans="false">T</div>
+<div class="grid-cell" data-ans="false">U</div>
+<div class="grid-cell" data-ans="false">S</div>
+<div class="grid-cell" data-ans="false">G</div>
+<div class="grid-cell" data-ans="false">B</div>
+<div class="grid-cell" data-ans="false">J</div>
+<div class="grid-cell" data-ans="false">X</div>
+<div class="grid-cell" data-ans="false">E</div>
+<div class="grid-cell" data-ans="false">P</div>
+<div class="grid-cell" data-ans="true">B</div>
+<div class="grid-cell" data-ans="false">W</div>
+<div class="grid-cell" data-ans="false">A</div>
+<div class="grid-cell" data-ans="false">Q</div>
+<div class="grid-cell" data-ans="false">Z</div>
+<div class="grid-cell" data-ans="false">F</div>
+<div class="grid-cell" data-ans="false">S</div>
+<div class="grid-cell" data-ans="false">G</div>
+<div class="grid-cell" data-ans="false">I</div>
+<div class="grid-cell" data-ans="false">D</div>
+<div class="grid-cell" data-ans="true">L</div>
+<div class="grid-cell" data-ans="false">K</div>
+<div class="grid-cell" data-ans="false">C</div>
+<div class="grid-cell" data-ans="false">N</div>
+<div class="grid-cell" data-ans="false">Y</div>
+<div class="grid-cell" data-ans="false">R</div>
+<div class="grid-cell" data-ans="false">V</div>
+<div class="grid-cell" data-ans="false">Q</div>
+<div class="grid-cell" data-ans="false">M</div>
+<div class="grid-cell" data-ans="false">A</div>
+<div class="grid-cell" data-ans="true">E</div>
+<div class="grid-cell" data-ans="false">H</div>
+<div class="grid-cell" data-ans="false">J</div>
+<div class="grid-cell" data-ans="false">P</div>
+<div class="grid-cell" data-ans="false">X</div>
+<div class="grid-cell" data-ans="false">U</div>
+<div class="grid-cell" data-ans="false">T</div>
+<div class="grid-cell" data-ans="false">C</div>
+<div class="grid-cell" data-ans="false">F</div>
+<div class="grid-cell" data-ans="false">W</div>
+<div class="grid-cell" data-ans="true">S</div>
+<div class="grid-cell" data-ans="false">B</div>
+<div class="grid-cell" data-ans="false">D</div>
+<div class="grid-cell" data-ans="false">L</div>
+<div class="grid-cell" data-ans="false">I</div>
+<div class="grid-cell" data-ans="false">G</div>
+
+  </div>
+</div>
+<style>
+.grid-cell {
+  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  font-family: 'Courier Prime', monospace; font-size: 16px; font-weight: 700;
+  color: var(--cream); background: rgba(255,255,255,0.03);
+  border-radius: 4px; border: 1px solid transparent; transition: all 0.3s;
+}
+.grid-cell.revealed[data-ans="true"] {
+  color: var(--green) !important;
+  background: rgba(125,223,125,0.1) !important;
+  border: 1px solid rgba(125,223,125,0.3) !important;
+}
+</style>
+<div class="input-row" style="margin-top:24px">
+  <input type="text" class="text-input" id="answer" placeholder="The hidden phrase..." onkeydown="if(event.key==='Enter')check()">
+  <button class="btn" onclick="check()">Check</button>
+</div>
+<p class="error" id="error" style="display:none">Not quite — try again!</p>
+
+<div id="hint-area">
+  <button class="hint-btn" onclick="document.getElementById('hint-area').innerHTML='<p class=hint-text>💡 A thorny, tangled, wild place</p>'">Need a hint?</button>
+</div>
+<div class="success-card" id="success" style="display:none">
+  <div class="egg-icon">🥚</div>
+  <p class="answer">THE BRAMBLES</p>
+  <p class="message">Venture into the brambles — watch for thorns! Your egg hides within. 🌿</p>
+</div>
+<script>
+function check() {
+  const val = document.getElementById('answer').value.toUpperCase().replace(/\s/g,'');
+  if (val === 'THEBRAMBLES') {
+    document.querySelectorAll('.grid-cell').forEach(c => c.classList.add('revealed'));
+    setTimeout(() => {
+      document.getElementById('success').style.display = 'block';
+      document.getElementById('hint-area').style.display = 'none';
+      document.querySelector('.input-row').style.display = 'none';
+      document.getElementById('error').style.display = 'none';
+    }, 600);
+  } else {
+    document.getElementById('error').style.display = 'block';
+  }
+}
+</script>
+
+</div>
+</div>
+</body>
+</html>
