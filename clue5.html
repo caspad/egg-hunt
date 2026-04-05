@@ -133,61 +133,63 @@ body::before {
 <div class="header">
   <div class="egg">🥚</div>
   <h1>The Great Egg Hunt</h1>
-  <p class="sub">Clue 5 of 5</p>
+  <p class="sub">Clue 5 of 7</p>
 </div>
 <div class="fade-in">
 
 <h2 class="clue-title">The Rebus</h2>
 <p class="desc">Use the pictures, add and subtract letters to decode each word. Combine them for your final destination.</p>
 
-<!-- WORD 1: DUNKIN -->
-<!-- DUCK - C + N = DUNK, PIN - P = IN → DUNKIN -->
+<!-- WORD 1: MORTON -->
+<!-- MORNING - NING = MOR, TON (weight) = TON → MORTON -->
 <div class="puzzle-box">
   <p style="text-align:center;color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:16px">WORD 1</p>
 
   <div class="rebus-row">
-    <span class="rebus-emoji">🦆</span>
+    <span class="rebus-emoji">🌅</span>
     <span class="rebus-op">&minus;</span>
-    <span class="rebus-strike">C</span>
-    <span class="rebus-op">+</span>
-    <span class="rebus-letters">N</span>
+    <span class="rebus-strike">NING</span>
   </div>
-  <p class="rebus-label">this bird minus a letter, plus a letter</p>
+  <p class="rebus-label">the start of the day, minus its last four letters</p>
 
   <div style="text-align:center;color:var(--gold);font-size:20px;margin:12px 0">+</div>
 
   <div class="rebus-row">
-    <span class="rebus-emoji">📌</span>
-    <span class="rebus-op">&minus;</span>
-    <span class="rebus-strike">P</span>
+    <span class="rebus-emoji">🏋️</span>
   </div>
-  <p class="rebus-label">this pointy thing minus its first letter</p>
+  <p class="rebus-label">a unit of weight (2,000 lbs)</p>
 
   <div class="rebus-result">= Word 1 ( _ _ _ _ _ _ )</div>
 </div>
 
-<!-- WORD 2: DONUTS -->
-<!-- DOOR - OR = DO, NUTS = NUTS → DONUTS -->
+<!-- WORD 2: WILLIAMS -->
+<!-- WILL (document) + DIAMOND - D - OND + S = WILLIAMS -->
 <div class="puzzle-box">
   <p style="text-align:center;color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:16px">WORD 2</p>
 
   <div class="rebus-row">
-    <span class="rebus-emoji">🚪</span>
-    <span class="rebus-op">&minus;</span>
-    <span class="rebus-strike">OR</span>
+    <span class="rebus-emoji">📜</span>
   </div>
-  <p class="rebus-label">what you walk through, minus its last two letters</p>
+  <p class="rebus-label">a legal document for after you pass</p>
 
   <div style="text-align:center;color:var(--gold);font-size:20px;margin:12px 0">+</div>
 
   <div class="rebus-row">
-    <span class="rebus-emoji">🥜</span>
-    <span class="rebus-op">+</span>
-    <span class="rebus-letters">S</span>
+    <span class="rebus-emoji">💎</span>
+    <span class="rebus-op">&minus;</span>
+    <span class="rebus-strike">D</span>
+    <span class="rebus-op">&minus;</span>
+    <span class="rebus-strike">OND</span>
   </div>
-  <p class="rebus-label">these snacks, made plural</p>
+  <p class="rebus-label">this precious stone, minus its first and last three letters</p>
 
-  <div class="rebus-result">= Word 2 ( _ _ _ _ _ _ )</div>
+  <div style="text-align:center;color:var(--gold);font-size:20px;margin:12px 0">+</div>
+
+  <div class="rebus-row">
+    <span class="rebus-letters" style="font-size:36px">S</span>
+  </div>
+
+  <div class="rebus-result">= Word 2 ( _ _ _ _ _ _ _ _ )</div>
 </div>
 
 <div class="input-row" style="margin-top:24px">
@@ -197,17 +199,17 @@ body::before {
 <p class="error" id="error" style="display:none">Not quite — try again!</p>
 
 <div id="hint-area">
-  <button class="hint-btn" onclick="document.getElementById('hint-area').innerHTML='<p class=hint-text>&#x1F4A1; America runs on this chain</p>'">Need a hint?</button>
+  <button class="hint-btn" onclick="document.getElementById('hint-area').innerHTML='<p class=hint-text>&#x1F4A1; A neighborhood grocery store chain in NYC</p>'">Need a hint?</button>
 </div>
 <div class="success-card" id="success" style="display:none">
   <div class="egg-icon">🥚</div>
-  <p class="answer">DUNKIN DONUTS</p>
-  <p class="message">Proceed to Dunkin Donuts and purchase one of your favorite pastries — and ask for an Easter egg too! 🍩🏆</p>
+  <p class="answer">MORTON WILLIAMS</p>
+  <p class="message">Proceed to Morton Williams and look behind the Cadbury's Buttons — your final Easter egg awaits! 🍫🏆</p>
 </div>
 <script>
 function check() {
   var val = document.getElementById('answer').value.toUpperCase().replace(/[^A-Z]/g,'');
-  if (val === 'DUNKINDONUTS') {
+  if (val === 'MORTONWILLIAMS') {
     document.getElementById('success').style.display = 'block';
     document.getElementById('hint-area').style.display = 'none';
     document.querySelector('.input-row').style.display = 'none';
