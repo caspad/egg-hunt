@@ -133,83 +133,50 @@ body::before {
 <div class="header">
   <div class="egg">🥚</div>
   <h1>The Great Egg Hunt</h1>
-  <p class="sub">Clue 6 of 6</p>
+  <p class="sub">Clue 6 of 7</p>
 </div>
 <div class="fade-in">
 
 <h2 class="clue-title">The Rebus</h2>
-<p class="desc">Use the pictures, add and subtract letters to decode each word. Combine them for your final destination.</p>
+<p class="desc">Use the pictures and math to decode an address. That's where your next egg is hiding.</p>
 
-<!-- WORD 1: MORTON -->
-<!-- MORNING - NING = MOR, TON (weight) = TON → MORTON -->
+<!-- ADDRESS: 12² = 144 Bleecker Street -->
 <div class="puzzle-box">
-  <p style="text-align:center;color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:16px">WORD 1</p>
+  <p style="text-align:center;color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:16px">STREET NUMBER</p>
 
-  <div class="rebus-row">
-    <span class="rebus-emoji">🌅</span>
-    <span class="rebus-op">&minus;</span>
-    <span class="rebus-strike">NING</span>
+  <div style="text-align:center;margin-bottom:12px">
+    <span style="font-family:'Courier Prime',monospace;font-size:42px;font-weight:700;color:var(--cream)">12</span><span style="font-family:'Courier Prime',monospace;font-size:24px;font-weight:700;color:var(--gold);vertical-align:super">2</span>
   </div>
-  <p class="rebus-label">the start of the day, minus its last four letters</p>
-
-  <div style="text-align:center;color:var(--gold);font-size:20px;margin:12px 0">+</div>
-
-  <div class="rebus-row">
-    <span class="rebus-emoji">🏋️</span>
-  </div>
-  <p class="rebus-label">a unit of weight (2,000 lbs)</p>
-
-  <div class="rebus-result">= Word 1 ( _ _ _ _ _ _ )</div>
+  <p class="rebus-label">solve the math — this is your street number</p>
 </div>
 
-<!-- WORD 2: WILLIAMS -->
-<!-- WILL (document) + DIAMOND - D - OND + S = WILLIAMS -->
 <div class="puzzle-box">
-  <p style="text-align:center;color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:16px">WORD 2</p>
+  <p style="text-align:center;color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:16px">STREET NAME</p>
 
-  <div class="rebus-row">
-    <span class="rebus-emoji">📜</span>
+  <div style="text-align:center">
+    <span style="font-family:'Courier Prime',monospace;font-size:28px;font-weight:700;color:var(--cream);letter-spacing:3px">🐝 + CKER</span>
   </div>
-  <p class="rebus-label">a legal document for after you pass</p>
-
-  <div style="text-align:center;color:var(--gold);font-size:20px;margin:12px 0">+</div>
-
-  <div class="rebus-row">
-    <span class="rebus-emoji">💎</span>
-    <span class="rebus-op">&minus;</span>
-    <span class="rebus-strike">D</span>
-    <span class="rebus-op">&minus;</span>
-    <span class="rebus-strike">OND</span>
-  </div>
-  <p class="rebus-label">this precious stone, minus its first and last three letters</p>
-
-  <div style="text-align:center;color:var(--gold);font-size:20px;margin:12px 0">+</div>
-
-  <div class="rebus-row">
-    <span class="rebus-letters" style="font-size:36px">S</span>
-  </div>
-
-  <div class="rebus-result">= Word 2 ( _ _ _ _ _ _ _ _ )</div>
+  <p class="rebus-label">this insect's sound + CKER = the street name</p>
 </div>
 
 <div class="input-row" style="margin-top:24px">
-  <input type="text" class="text-input" id="answer" placeholder="Two words..." onkeydown="if(event.key==='Enter')check()">
+  <input type="text" class="text-input" id="answer" placeholder="Number + street name..." onkeydown="if(event.key==='Enter')check()">
   <button class="btn" onclick="check()">Check</button>
 </div>
 <p class="error" id="error" style="display:none">Not quite — try again!</p>
 
 <div id="hint-area">
-  <button class="hint-btn" onclick="document.getElementById('hint-area').innerHTML='<p class=hint-text>&#x1F4A1; A neighborhood grocery store chain in NYC</p>'">Need a hint?</button>
+  <button class="hint-btn" onclick="document.getElementById('hint-area').innerHTML='<p class=hint-text>&#x1F4A1; 12 &times; 12 = ? ... and bees go buzz, but they also go ___</p>'">Need a hint?</button>
 </div>
 <div class="success-card" id="success" style="display:none">
   <div class="egg-icon">🥚</div>
-  <p class="answer">MORTON WILLIAMS</p>
-  <p class="message">Proceed to Morton Williams and look behind the Cadbury's Buttons — your final Easter egg awaits! 🍫🏆</p>
+  <p class="answer">144 BLEECKER STREET</p>
+  <p class="message">Proceed to 144 Bleecker Street and ask the shopkeeper for an egg please! 🥚</p>
 </div>
 <script>
 function check() {
-  var val = document.getElementById('answer').value.toUpperCase().replace(/[^A-Z]/g,'');
-  if (val === 'MORTONWILLIAMS') {
+  var val = document.getElementById('answer').value.toUpperCase().replace(/[^A-Z0-9]/g,'');
+  if (val === '144BLEECKERSTREET' || val === '144BLEECKER') {
     document.getElementById('success').style.display = 'block';
     document.getElementById('hint-area').style.display = 'none';
     document.querySelector('.input-row').style.display = 'none';
