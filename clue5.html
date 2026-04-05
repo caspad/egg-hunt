@@ -53,8 +53,38 @@ body::before {
 .desc { color: var(--cream); opacity: 0.7; margin-bottom: 16px; font-size: 15px; line-height: 1.6; }
 .puzzle-box {
   background: rgba(212,165,116,0.08);
-  border-radius: 12px; padding: 24px; margin-bottom: 24px;
+  border-radius: 12px; padding: 24px; margin-bottom: 16px;
   border: 1px solid rgba(212,165,116,0.15);
+}
+.rebus-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; flex-wrap: wrap; margin-bottom: 12px;
+}
+.rebus-emoji { font-size: 52px; line-height: 1; }
+.rebus-op {
+  font-family: 'Courier Prime', monospace;
+  font-size: 28px; font-weight: 700; color: var(--gold);
+}
+.rebus-letters {
+  font-family: 'Courier Prime', monospace;
+  font-size: 28px; font-weight: 700; color: var(--cream);
+  letter-spacing: 3px;
+}
+.rebus-strike {
+  font-family: 'Courier Prime', monospace;
+  font-size: 28px; font-weight: 700; color: var(--red);
+  text-decoration: line-through;
+  letter-spacing: 3px;
+}
+.rebus-label {
+  text-align: center; color: var(--cream); opacity: 0.4;
+  font-size: 12px; font-style: italic; margin-top: 4px;
+}
+.rebus-result {
+  text-align: center; color: var(--gold);
+  font-size: 15px; font-weight: 600; margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(212,165,116,0.15);
 }
 .input-row { display: flex; gap: 12px; }
 .text-input {
@@ -95,9 +125,7 @@ body::before {
 }
 .success-card .message { color: var(--cream); opacity: 0.7; font-size: 15px; line-height: 1.5; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes bounceIn { 0% { transform: scale(0.3); opacity: 0; } 50% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
 .fade-in { animation: fadeUp 0.5s ease-out; }
-.mono { font-family: 'Courier Prime', monospace; }
 </style>
 </head>
 <body>
@@ -109,106 +137,86 @@ body::before {
 </div>
 <div class="fade-in">
 
-<h2 class="clue-title">The Anagram</h2>
-<p class="desc">Rearrange these scrambled letters to reveal your final destination. Two words. Tap letters to place them.</p>
+<h2 class="clue-title">The Rebus</h2>
+<p class="desc">Use the pictures, add and subtract letters to decode each word. Combine them for your final destination.</p>
+
+<!-- WORD 1: DUNKIN -->
+<!-- DUCK - C + N = DUNK, PIN - P = IN → DUNKIN -->
 <div class="puzzle-box">
-  <div id="tiles" style="display:flex;justify-content:center;gap:8px;margin-bottom:24px;flex-wrap:wrap"></div>
-  <div id="slots" style="display:flex;justify-content:center;gap:6px"></div>
+  <p style="text-align:center;color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:16px">WORD 1</p>
+
+  <div class="rebus-row">
+    <span class="rebus-emoji">🦆</span>
+    <span class="rebus-op">&minus;</span>
+    <span class="rebus-strike">C</span>
+    <span class="rebus-op">+</span>
+    <span class="rebus-letters">N</span>
+  </div>
+  <p class="rebus-label">this bird minus a letter, plus a letter</p>
+
+  <div style="text-align:center;color:var(--gold);font-size:20px;margin:12px 0">+</div>
+
+  <div class="rebus-row">
+    <span class="rebus-emoji">📌</span>
+    <span class="rebus-op">&minus;</span>
+    <span class="rebus-strike">P</span>
+  </div>
+  <p class="rebus-label">this pointy thing minus its first letter</p>
+
+  <div class="rebus-result">= Word 1 ( _ _ _ _ _ _ )</div>
 </div>
-<button class="btn" onclick="resetAnagram()" style="background:transparent;border:1px solid rgba(212,165,116,0.3);color:var(--cream);opacity:0.6;margin-top:12px">Reset</button>
-<style>
-.tile {
-  width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;
-  font-family: 'Courier Prime', monospace; font-size: 24px; font-weight: 700;
-  color: var(--gold); background: rgba(212,165,116,0.1);
-  border: 2px solid var(--gold); border-radius: 8px;
-  cursor: pointer; transition: all 0.2s; opacity: 0.8;
-}
-.tile.selected { color: var(--dark); background: var(--gold); opacity: 1; transform: scale(0.9); }
-.slot {
-  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
-  border-bottom: 2px solid rgba(212,165,116,0.3);
-  font-family: 'Courier Prime', monospace; font-size: 22px; font-weight: 700;
-  color: var(--gold); transition: all 0.2s;
-}
-.slot.wrong { border-color: var(--red) !important; color: var(--red) !important; }
-</style>
+
+<!-- WORD 2: DONUTS -->
+<!-- DOOR - OR = DO, NUTS = NUTS → DONUTS -->
+<div class="puzzle-box">
+  <p style="text-align:center;color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:16px">WORD 2</p>
+
+  <div class="rebus-row">
+    <span class="rebus-emoji">🚪</span>
+    <span class="rebus-op">&minus;</span>
+    <span class="rebus-strike">OR</span>
+  </div>
+  <p class="rebus-label">what you walk through, minus its last two letters</p>
+
+  <div style="text-align:center;color:var(--gold);font-size:20px;margin:12px 0">+</div>
+
+  <div class="rebus-row">
+    <span class="rebus-emoji">🥜</span>
+    <span class="rebus-op">+</span>
+    <span class="rebus-letters">S</span>
+  </div>
+  <p class="rebus-label">these snacks, made plural</p>
+
+  <div class="rebus-result">= Word 2 ( _ _ _ _ _ _ )</div>
+</div>
+
+<div class="input-row" style="margin-top:24px">
+  <input type="text" class="text-input" id="answer" placeholder="Two words..." onkeydown="if(event.key==='Enter')check()">
+  <button class="btn" onclick="check()">Check</button>
+</div>
+<p class="error" id="error" style="display:none">Not quite — try again!</p>
 
 <div id="hint-area">
-  <button class="hint-btn" onclick="document.getElementById('hint-area').innerHTML='<p class=hint-text>💡 A place where four-legged friends roam free</p>'">Need a hint?</button>
+  <button class="hint-btn" onclick="document.getElementById('hint-area').innerHTML='<p class=hint-text>&#x1F4A1; America runs on this chain</p>'">Need a hint?</button>
 </div>
 <div class="success-card" id="success" style="display:none">
   <div class="egg-icon">🥚</div>
-  <p class="answer">DOG PARK</p>
-  <p class="message">Your final egg awaits at the dog park! Go claim your prize! 🏆</p>
+  <p class="answer">DUNKIN DONUTS</p>
+  <p class="message">Proceed to Dunkin Donuts and purchase one of your favorite pastries — and ask for an Easter egg too! 🍩🏆</p>
 </div>
 <script>
-const LETTERS = ['K','R','A','P','G','O','D'];
-const ANSWER = 'DOGPARK';
-let selected = [];
-let tiles = [];
-
-function initAnagram() {
-  const tilesEl = document.getElementById('tiles');
-  const slotsEl = document.getElementById('slots');
-  tilesEl.innerHTML = '';
-  slotsEl.innerHTML = '';
-  selected = [];
-  tiles = LETTERS.map((l, i) => ({letter: l, id: i, sel: false}));
-  tiles.forEach(t => {
-    const btn = document.createElement('button');
-    btn.className = 'tile';
-    btn.textContent = t.letter;
-    btn.id = 'tile-' + t.id;
-    btn.onclick = () => toggleTile(t.id);
-    tilesEl.appendChild(btn);
-  });
-  for (let i = 0; i < LETTERS.length; i++) {
-    const slot = document.createElement('div');
-    slot.className = 'slot';
-    slot.id = 'slot-' + i;
-    slotsEl.appendChild(slot);
-  }
-}
-
-function toggleTile(id) {
-  const t = tiles.find(x => x.id === id);
-  if (t.sel) {
-    t.sel = false;
-    selected = selected.filter(s => s.id !== id);
-    document.getElementById('tile-' + id).classList.remove('selected');
+function check() {
+  var val = document.getElementById('answer').value.toUpperCase().replace(/[^A-Z]/g,'');
+  if (val === 'DUNKINDONUTS') {
+    document.getElementById('success').style.display = 'block';
+    document.getElementById('hint-area').style.display = 'none';
+    document.querySelector('.input-row').style.display = 'none';
+    document.getElementById('error').style.display = 'none';
+    document.querySelectorAll('.puzzle-box').forEach(function(e) { e.style.display='none'; });
   } else {
-    t.sel = true;
-    selected.push(t);
-    document.getElementById('tile-' + id).classList.add('selected');
-  }
-  updateSlots();
-  if (selected.length === LETTERS.length) {
-    const word = selected.map(s => s.letter).join('');
-    if (word === ANSWER) {
-      setTimeout(() => {
-        document.getElementById('success').style.display = 'block';
-        document.getElementById('hint-area').style.display = 'none';
-        document.querySelector('.puzzle-box').style.display = 'none';
-      }, 400);
-    } else {
-      document.querySelectorAll('.slot').forEach(s => s.classList.add('wrong'));
-      setTimeout(resetAnagram, 800);
-    }
+    document.getElementById('error').style.display = 'block';
   }
 }
-
-function updateSlots() {
-  for (let i = 0; i < LETTERS.length; i++) {
-    const slot = document.getElementById('slot-' + i);
-    slot.textContent = selected[i] ? selected[i].letter : '';
-    slot.style.borderColor = selected[i] ? 'var(--gold)' : 'rgba(212,165,116,0.3)';
-    slot.classList.remove('wrong');
-  }
-}
-
-function resetAnagram() { initAnagram(); }
-initAnagram();
 </script>
 
 </div>
