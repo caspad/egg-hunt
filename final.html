@@ -53,8 +53,38 @@ body::before {
 .desc { color: var(--cream); opacity: 0.7; margin-bottom: 16px; font-size: 15px; line-height: 1.6; }
 .puzzle-box {
   background: rgba(212,165,116,0.08);
-  border-radius: 12px; padding: 24px; margin-bottom: 24px;
+  border-radius: 12px; padding: 24px; margin-bottom: 16px;
   border: 1px solid rgba(212,165,116,0.15);
+}
+.rebus-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; flex-wrap: wrap; margin-bottom: 12px;
+}
+.rebus-emoji { font-size: 52px; line-height: 1; }
+.rebus-op {
+  font-family: 'Courier Prime', monospace;
+  font-size: 28px; font-weight: 700; color: var(--gold);
+}
+.rebus-letters {
+  font-family: 'Courier Prime', monospace;
+  font-size: 28px; font-weight: 700; color: var(--cream);
+  letter-spacing: 3px;
+}
+.rebus-strike {
+  font-family: 'Courier Prime', monospace;
+  font-size: 28px; font-weight: 700; color: var(--red);
+  text-decoration: line-through;
+  letter-spacing: 3px;
+}
+.rebus-label {
+  text-align: center; color: var(--cream); opacity: 0.4;
+  font-size: 12px; font-style: italic; margin-top: 4px;
+}
+.rebus-result {
+  text-align: center; color: var(--gold);
+  font-size: 15px; font-weight: 600; margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(212,165,116,0.15);
 }
 .input-row { display: flex; gap: 12px; }
 .text-input {
@@ -95,9 +125,7 @@ body::before {
 }
 .success-card .message { color: var(--cream); opacity: 0.7; font-size: 15px; line-height: 1.5; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes bounceIn { 0% { transform: scale(0.3); opacity: 0; } 50% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
 .fade-in { animation: fadeUp 0.5s ease-out; }
-.mono { font-family: 'Courier Prime', monospace; }
 </style>
 </head>
 <body>
@@ -105,20 +133,93 @@ body::before {
 <div class="header">
   <div class="egg">🥚</div>
   <h1>The Great Egg Hunt</h1>
-  <p class="sub"></p>
+  <p class="sub">Clue 6 of 6</p>
 </div>
 <div class="fade-in">
 
-<div style="text-align:center;padding:40px 0">
-  <div style="font-size:64px;margin-bottom:20px;animation:bounceIn 0.6s ease-out">🏆</div>
-  <h1 style="font-family:'Playfair Display',serif;font-size:32px;color:var(--gold);margin-bottom:12px">
-    Congratulations!
-  </h1>
-  <p style="color:var(--cream);opacity:0.7;font-size:17px;line-height:1.6;max-width:360px;margin:0 auto">
-    You've completed the hunt! Every clue cracked, every egg found. You're officially an egg-cellent detective.
-  </p>
-  <div style="margin-top:30px;font-size:36px">🥚🐣🥚🐣🥚</div>
+<h2 class="clue-title">The Rebus</h2>
+<p class="desc">Use the pictures, add and subtract letters to decode each word. Combine them for your final destination.</p>
+
+<!-- WORD 1: MORTON -->
+<!-- MORNING - NING = MOR, TON (weight) = TON → MORTON -->
+<div class="puzzle-box">
+  <p style="text-align:center;color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:16px">WORD 1</p>
+
+  <div class="rebus-row">
+    <span class="rebus-emoji">🌅</span>
+    <span class="rebus-op">&minus;</span>
+    <span class="rebus-strike">NING</span>
+  </div>
+  <p class="rebus-label">the start of the day, minus its last four letters</p>
+
+  <div style="text-align:center;color:var(--gold);font-size:20px;margin:12px 0">+</div>
+
+  <div class="rebus-row">
+    <span class="rebus-emoji">🏋️</span>
+  </div>
+  <p class="rebus-label">a unit of weight (2,000 lbs)</p>
+
+  <div class="rebus-result">= Word 1 ( _ _ _ _ _ _ )</div>
 </div>
+
+<!-- WORD 2: WILLIAMS -->
+<!-- WILL (document) + DIAMOND - D - OND + S = WILLIAMS -->
+<div class="puzzle-box">
+  <p style="text-align:center;color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:16px">WORD 2</p>
+
+  <div class="rebus-row">
+    <span class="rebus-emoji">📜</span>
+  </div>
+  <p class="rebus-label">a legal document for after you pass</p>
+
+  <div style="text-align:center;color:var(--gold);font-size:20px;margin:12px 0">+</div>
+
+  <div class="rebus-row">
+    <span class="rebus-emoji">💎</span>
+    <span class="rebus-op">&minus;</span>
+    <span class="rebus-strike">D</span>
+    <span class="rebus-op">&minus;</span>
+    <span class="rebus-strike">OND</span>
+  </div>
+  <p class="rebus-label">this precious stone, minus its first and last three letters</p>
+
+  <div style="text-align:center;color:var(--gold);font-size:20px;margin:12px 0">+</div>
+
+  <div class="rebus-row">
+    <span class="rebus-letters" style="font-size:36px">S</span>
+  </div>
+
+  <div class="rebus-result">= Word 2 ( _ _ _ _ _ _ _ _ )</div>
+</div>
+
+<div class="input-row" style="margin-top:24px">
+  <input type="text" class="text-input" id="answer" placeholder="Two words..." onkeydown="if(event.key==='Enter')check()">
+  <button class="btn" onclick="check()">Check</button>
+</div>
+<p class="error" id="error" style="display:none">Not quite — try again!</p>
+
+<div id="hint-area">
+  <button class="hint-btn" onclick="document.getElementById('hint-area').innerHTML='<p class=hint-text>&#x1F4A1; A neighborhood grocery store chain in NYC</p>'">Need a hint?</button>
+</div>
+<div class="success-card" id="success" style="display:none">
+  <div class="egg-icon">🥚</div>
+  <p class="answer">MORTON WILLIAMS</p>
+  <p class="message">Proceed to Morton Williams and look behind the Cadbury's Buttons — your final Easter egg awaits! 🍫🏆</p>
+</div>
+<script>
+function check() {
+  var val = document.getElementById('answer').value.toUpperCase().replace(/[^A-Z]/g,'');
+  if (val === 'MORTONWILLIAMS') {
+    document.getElementById('success').style.display = 'block';
+    document.getElementById('hint-area').style.display = 'none';
+    document.querySelector('.input-row').style.display = 'none';
+    document.getElementById('error').style.display = 'none';
+    document.querySelectorAll('.puzzle-box').forEach(function(e) { e.style.display='none'; });
+  } else {
+    document.getElementById('error').style.display = 'block';
+  }
+}
+</script>
 
 </div>
 </div>
