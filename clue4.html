@@ -95,7 +95,6 @@ body::before {
 }
 .success-card .message { color: var(--cream); opacity: 0.7; font-size: 15px; line-height: 1.5; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes bounceIn { 0% { transform: scale(0.3); opacity: 0; } 50% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
 .fade-in { animation: fadeUp 0.5s ease-out; }
 .mono { font-family: 'Courier Prime', monospace; }
 </style>
@@ -109,151 +108,41 @@ body::before {
 </div>
 <div class="fade-in">
 
-<h2 class="clue-title">The Word Search</h2>
-<p class="desc">A two-word location is hidden in this grid. It follows a connected path — right, then down. Find it and type it below.</p>
-<div class="puzzle-box" style="padding:16px;overflow-x:auto">
-  <div style="display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:360px;margin:0 auto" id="grid">
-    <div class="grid-cell" data-ans="false">F</div>
-<div class="grid-cell" data-ans="false">W</div>
-<div class="grid-cell" data-ans="false">K</div>
-<div class="grid-cell" data-ans="false">Q</div>
-<div class="grid-cell" data-ans="false">J</div>
-<div class="grid-cell" data-ans="false">N</div>
-<div class="grid-cell" data-ans="false">P</div>
-<div class="grid-cell" data-ans="false">X</div>
-<div class="grid-cell" data-ans="false">Z</div>
-<div class="grid-cell" data-ans="false">G</div>
-<div class="grid-cell" data-ans="false">M</div>
-<div class="grid-cell" data-ans="false">V</div>
-<div class="grid-cell" data-ans="true">T</div>
-<div class="grid-cell" data-ans="true">H</div>
-<div class="grid-cell" data-ans="true">E</div>
-<div class="grid-cell" data-ans="false">D</div>
-<div class="grid-cell" data-ans="false">R</div>
-<div class="grid-cell" data-ans="false">Y</div>
-<div class="grid-cell" data-ans="false">C</div>
-<div class="grid-cell" data-ans="false">A</div>
-<div class="grid-cell" data-ans="false">I</div>
-<div class="grid-cell" data-ans="false">L</div>
-<div class="grid-cell" data-ans="false">S</div>
-<div class="grid-cell" data-ans="false">U</div>
-<div class="grid-cell" data-ans="true">B</div>
-<div class="grid-cell" data-ans="false">O</div>
-<div class="grid-cell" data-ans="false">W</div>
-<div class="grid-cell" data-ans="false">F</div>
-<div class="grid-cell" data-ans="false">K</div>
-<div class="grid-cell" data-ans="false">N</div>
-<div class="grid-cell" data-ans="false">Z</div>
-<div class="grid-cell" data-ans="false">P</div>
-<div class="grid-cell" data-ans="false">A</div>
-<div class="grid-cell" data-ans="false">G</div>
-<div class="grid-cell" data-ans="true">R</div>
-<div class="grid-cell" data-ans="false">J</div>
-<div class="grid-cell" data-ans="false">X</div>
-<div class="grid-cell" data-ans="false">M</div>
-<div class="grid-cell" data-ans="false">D</div>
-<div class="grid-cell" data-ans="false">Q</div>
-<div class="grid-cell" data-ans="false">Y</div>
-<div class="grid-cell" data-ans="false">C</div>
-<div class="grid-cell" data-ans="false">W</div>
-<div class="grid-cell" data-ans="false">F</div>
-<div class="grid-cell" data-ans="true">A</div>
-<div class="grid-cell" data-ans="false">L</div>
-<div class="grid-cell" data-ans="false">I</div>
-<div class="grid-cell" data-ans="false">V</div>
-<div class="grid-cell" data-ans="false">E</div>
-<div class="grid-cell" data-ans="false">H</div>
-<div class="grid-cell" data-ans="false">D</div>
-<div class="grid-cell" data-ans="false">K</div>
-<div class="grid-cell" data-ans="false">N</div>
-<div class="grid-cell" data-ans="false">R</div>
-<div class="grid-cell" data-ans="true">M</div>
-<div class="grid-cell" data-ans="false">T</div>
-<div class="grid-cell" data-ans="false">U</div>
-<div class="grid-cell" data-ans="false">S</div>
-<div class="grid-cell" data-ans="false">G</div>
-<div class="grid-cell" data-ans="false">B</div>
-<div class="grid-cell" data-ans="false">J</div>
-<div class="grid-cell" data-ans="false">X</div>
-<div class="grid-cell" data-ans="false">E</div>
-<div class="grid-cell" data-ans="false">P</div>
-<div class="grid-cell" data-ans="true">B</div>
-<div class="grid-cell" data-ans="false">W</div>
-<div class="grid-cell" data-ans="false">A</div>
-<div class="grid-cell" data-ans="false">Q</div>
-<div class="grid-cell" data-ans="false">Z</div>
-<div class="grid-cell" data-ans="false">F</div>
-<div class="grid-cell" data-ans="false">S</div>
-<div class="grid-cell" data-ans="false">G</div>
-<div class="grid-cell" data-ans="false">I</div>
-<div class="grid-cell" data-ans="false">D</div>
-<div class="grid-cell" data-ans="true">L</div>
-<div class="grid-cell" data-ans="false">K</div>
-<div class="grid-cell" data-ans="false">C</div>
-<div class="grid-cell" data-ans="false">N</div>
-<div class="grid-cell" data-ans="false">Y</div>
-<div class="grid-cell" data-ans="false">R</div>
-<div class="grid-cell" data-ans="false">V</div>
-<div class="grid-cell" data-ans="false">Q</div>
-<div class="grid-cell" data-ans="false">M</div>
-<div class="grid-cell" data-ans="false">A</div>
-<div class="grid-cell" data-ans="true">E</div>
-<div class="grid-cell" data-ans="false">H</div>
-<div class="grid-cell" data-ans="false">J</div>
-<div class="grid-cell" data-ans="false">P</div>
-<div class="grid-cell" data-ans="false">X</div>
-<div class="grid-cell" data-ans="false">U</div>
-<div class="grid-cell" data-ans="false">T</div>
-<div class="grid-cell" data-ans="false">C</div>
-<div class="grid-cell" data-ans="false">F</div>
-<div class="grid-cell" data-ans="false">W</div>
-<div class="grid-cell" data-ans="true">S</div>
-<div class="grid-cell" data-ans="false">B</div>
-<div class="grid-cell" data-ans="false">D</div>
-<div class="grid-cell" data-ans="false">L</div>
-<div class="grid-cell" data-ans="false">I</div>
-<div class="grid-cell" data-ans="false">G</div>
-
-  </div>
+<h2 class="clue-title">The Rebus</h2>
+<p class="desc">Decode each visual clue to get a word. Combine them for your next location.</p>
+<div class="puzzle-box" style="margin-bottom:12px">
+  <div style="font-size:48px;text-align:center;margin-bottom:8px">🐻 <span style="color:var(--gold);font-size:28px">&rarr;</span> <span class="mono" style="font-size:32px;color:var(--cream);letter-spacing:4px">B<span style="opacity:0.3">_ _ _</span></span></div>
+  <p style="text-align:center;color:var(--cream);opacity:0.5;font-size:13px;font-style:italic">This animal's name, but rearrange the letters</p>
+  <p style="text-align:center;color:var(--gold);font-size:14px;margin-top:6px">= Word 1</p>
 </div>
-<style>
-.grid-cell {
-  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
-  font-family: 'Courier Prime', monospace; font-size: 16px; font-weight: 700;
-  color: var(--cream); background: rgba(255,255,255,0.03);
-  border-radius: 4px; border: 1px solid transparent; transition: all 0.3s;
-}
-.grid-cell.revealed[data-ans="true"] {
-  color: var(--green) !important;
-  background: rgba(125,223,125,0.1) !important;
-  border: 1px solid rgba(125,223,125,0.3) !important;
-}
-</style>
+<div class="puzzle-box">
+  <div style="font-size:48px;text-align:center;margin-bottom:8px">🍔</div>
+  <p style="text-align:center;color:var(--cream);opacity:0.5;font-size:13px;font-style:italic">What is this called?</p>
+  <p style="text-align:center;color:var(--gold);font-size:14px;margin-top:6px">= Word 2</p>
+</div>
 <div class="input-row" style="margin-top:24px">
-  <input type="text" class="text-input" id="answer" placeholder="The hidden phrase..." onkeydown="if(event.key==='Enter')check()">
+  <input type="text" class="text-input" id="answer" placeholder="Two words..." onkeydown="if(event.key==='Enter')check()">
   <button class="btn" onclick="check()">Check</button>
 </div>
 <p class="error" id="error" style="display:none">Not quite — try again!</p>
 
 <div id="hint-area">
-  <button class="hint-btn" onclick="document.getElementById('hint-area').innerHTML='<p class=hint-text>💡 A thorny, tangled, wild place</p>'">Need a hint?</button>
+  <button class="hint-btn" onclick="document.getElementById('hint-area').innerHTML='<p class=hint-text>&#x1F4A1; A restaurant known for its organic patties</p>'">Need a hint?</button>
 </div>
 <div class="success-card" id="success" style="display:none">
   <div class="egg-icon">🥚</div>
-  <p class="answer">THE BRAMBLES</p>
-  <p class="message">Venture into the brambles — watch for thorns! Your egg hides within. 🌿</p>
+  <p class="answer">BAREBURGER</p>
+  <p class="message">Proceed to the back of the Bareburger across from Sasaki Garden — your next egg is hiding there! 🍔</p>
 </div>
 <script>
 function check() {
-  const val = document.getElementById('answer').value.toUpperCase().replace(/\s/g,'');
-  if (val === 'THEBRAMBLES') {
-    document.querySelectorAll('.grid-cell').forEach(c => c.classList.add('revealed'));
-    setTimeout(() => {
-      document.getElementById('success').style.display = 'block';
-      document.getElementById('hint-area').style.display = 'none';
-      document.querySelector('.input-row').style.display = 'none';
-      document.getElementById('error').style.display = 'none';
-    }, 600);
+  var val = document.getElementById('answer').value.toUpperCase().replace(/\s/g,'');
+  if (val === 'BAREBURGER') {
+    document.getElementById('success').style.display = 'block';
+    document.getElementById('hint-area').style.display = 'none';
+    document.querySelector('.input-row').style.display = 'none';
+    document.getElementById('error').style.display = 'none';
+    document.querySelectorAll('.puzzle-box').forEach(function(e) { e.style.display='none'; });
   } else {
     document.getElementById('error').style.display = 'block';
   }
